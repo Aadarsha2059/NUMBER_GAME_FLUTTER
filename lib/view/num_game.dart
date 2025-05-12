@@ -1,6 +1,10 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(const MaterialApp(home: RandomGame()));
+}
+
 class RandomGame extends StatefulWidget {
   const RandomGame({super.key});
 
@@ -9,51 +13,40 @@ class RandomGame extends StatefulWidget {
 }
 
 class _RandomGameState extends State<RandomGame> {
-  int numberOne = 0;
-  int numberTwo = 0;
+  final Random random = Random();
+  final int maxClicks = 10;
+
+  int numberA = 0;
+  int numberB = 0;
   int clicks = 0;
   int scoreA = 0;
   int scoreB = 0;
   String winner = '';
-  final int maxClicks = 10;
-  final Random random = Random();
+  List<bool> turnOrder = [];
 
-  List<int> historyA = [];
-  List<int> historyB = [];
-
-  List<bool> turnOrder = []; // true = A's turn, false = B's turn
-
-  void generateTurnOrder() {
+  void initGame() {
+    scoreA = 0;
+    scoreB = 0;
+    clicks = 0;
+    winner = '';
     turnOrder = List.filled(5, true) + List.filled(5, false);
-    turnOrder.shuffle(random); // Shuffle the turn order randomly
+    turnOrder.shuffle();
+    generateNumbers();
   }
 
   void generateNumbers() {
-    numberOne = random.nextInt(100);
-    int offset = random.nextInt(50) + 1; // Difference of 1–50
-    numberTwo = (random.nextBool() ? numberOne + offset : numberOne - offset).clamp(0, 99);
-    if (random.nextBool()) {
-      int temp = numberOne;
-      numberOne = numberTwo;
-      numberTwo = temp;
-    }
+    numberA = random.nextInt(100);
+    numberB = random.nextInt(100);
   }
 
-  void handleClick(bool isButtonA) {
-    if (clicks >= maxClicks || isButtonA != turnOrder[clicks]) return;
+  void handleClick(bool isA) {
+    if (clicks >= maxClicks || turnOrder[clicks] != isA) return;
 
     setState(() {
-      if (isButtonA) {
-        if (numberOne > numberTwo) scoreA++;
-      } else {
-        if (numberTwo > numberOne) scoreB++;
-      }
-
-      historyA.add(numberOne);
-      historyB.add(numberTwo);
+      if (numberA > numberB && isA) scoreA++;
+      if (numberB > numberA && !isA) scoreB++;
 
       clicks++;
-
       if (clicks == maxClicks) {
         if (scoreA > scoreB) {
           winner = 'Winner: Button A';
@@ -68,76 +61,48 @@ class _RandomGameState extends State<RandomGame> {
     });
   }
 
-  void resetGame() {
-    setState(() {
-      clicks = 0;
-      scoreA = 0;
-      scoreB = 0;
-      winner = '';
-      historyA.clear();
-      historyB.clear();
-      generateTurnOrder();
-      generateNumbers();
-    });
-  }
-
   @override
   void initState() {
     super.initState();
-    generateTurnOrder();
-    generateNumbers();
+    initGame();
   }
 
   @override
   Widget build(BuildContext context) {
-    bool isATurn = clicks < turnOrder.length ? turnOrder[clicks] : true;
+    bool isATurn = clicks < maxClicks ? turnOrder[clicks] : true;
 
-    return MaterialApp(
-      title: 'Material Game',
-      home: Scaffold(
-        appBar: AppBar(title: const Text("Number Game")),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: 20),
-                Text(
-                  'Turn: ${isATurn ? 'Button A' : 'Button B'}',
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: isATurn && clicks < maxClicks ? () => handleClick(true) : null,
-                  child: Text('Button A: $numberOne'),
-                ),
-                ElevatedButton(
-                  onPressed: !isATurn && clicks < maxClicks ? () => handleClick(false) : null,
-                  child: Text('Button B: $numberTwo'),
-                ),
-                const SizedBox(height: 20),
-                Text('Clicks: $clicks / $maxClicks'),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text(winner.isEmpty ? 'Winner will appear here' : winner),
-                ),
-                const SizedBox(height: 30),
-                Text('Button A Numbers: ${historyA.join(', ')}'),
-                const SizedBox(height: 10),
-                Text('Button B Numbers: ${historyB.join(', ')}'),
-                const SizedBox(height: 30),
-                ElevatedButton(
-                  onPressed: resetGame,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    foregroundColor: Colors.white,
-                  ),
-                  child: const Text('Restart Game'),
-                ),
-              ],
+    return Scaffold(
+      appBar: AppBar(title: const Text('Random Game')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Turn: ${isATurn ? "A" : "B"}'),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: isATurn && clicks < maxClicks ? () => handleClick(true) : null,
+              child: Text('Button A: $numberA'),
             ),
-          ),
+            ElevatedButton(
+              onPressed: !isATurn && clicks < maxClicks ? () => handleClick(false) : null,
+              child: Text('Button B: $numberB'),
+            ),
+            const SizedBox(height: 10),
+            Text('Score A: $scoreA'),
+            Text('Score B: $scoreB'),
+            Text('Clicks: $clicks / $maxClicks'),
+            const SizedBox(height: 10),
+            Text(winner),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  initGame();
+                });
+              },
+              child: const Text('Restart'),
+            ),
+          ],
         ),
       ),
     );
