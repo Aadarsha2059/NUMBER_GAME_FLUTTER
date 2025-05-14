@@ -80,11 +80,17 @@ class _RandomGameState extends State<RandomGame> {
             Text('Turn: ${isATurn ? "A" : "B"}'),
             const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: isATurn && clicks < maxClicks ? () => handleClick(true) : null,
+              onPressed:
+                  isATurn && clicks < maxClicks
+                      ? () => handleClick(true)
+                      : null,
               child: Text('Button A: $numberA'),
             ),
             ElevatedButton(
-              onPressed: !isATurn && clicks < maxClicks ? () => handleClick(false) : null,
+              onPressed:
+                  !isATurn && clicks < maxClicks
+                      ? () => handleClick(false)
+                      : null,
               child: Text('Button B: $numberB'),
             ),
             const SizedBox(height: 10),
