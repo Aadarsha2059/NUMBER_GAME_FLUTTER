@@ -6,6 +6,7 @@ import 'package:num_game/view/load_image_view.dart';
 import 'package:num_game/view/login_page_view.dart';
 import 'package:num_game/view/media_query_view.dart';
 import 'package:num_game/view/num_game.dart';
+import 'package:num_game/view/rows_columns_view.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -14,7 +15,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FlexibleExpendedView(),
+      home: RowsColumnView(),
     );
   }
 }

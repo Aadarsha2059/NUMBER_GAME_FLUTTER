@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:num_game/common/my_snackbar.dart';
 
 class FlexibleExpendedView extends StatelessWidget {
   const FlexibleExpendedView({super.key});
@@ -11,12 +12,9 @@ class FlexibleExpendedView extends StatelessWidget {
           Expanded(
             child: GestureDetector(
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text("Container 1"),
-                    backgroundColor: Colors.green,
-                    behavior: SnackBarBehavior.floating,
-                  ),
+                showMySnackBar(
+                  context: context,
+                  message: "container one clicked",
                 );
               },
 
