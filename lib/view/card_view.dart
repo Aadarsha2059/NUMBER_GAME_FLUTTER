@@ -20,7 +20,7 @@ class CardView extends StatelessWidget {
                onTap: () {
                 showMySnackBar(
                   context: context,
-                  message: "container one clicked",
+                  message: "container  clicked",
                 );
               },
                child: MyCard(title: "Card $i", color: Colors.amber),
