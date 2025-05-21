@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 class CalculatorView extends StatefulWidget {
   const CalculatorView({super.key});
@@ -44,25 +45,14 @@ class _CalculatorViewState extends State<CalculatorView> {
   String _evaluate(String expr) {
     try {
       expr = expr.replaceAll('%', '/100');
-      final parsed = double.parse(_calculateExpression(expr));
-      return parsed.toStringAsFixed(2).replaceAll(RegExp(r'\.00$'), '');
+      Parser p = Parser();
+      Expression exp = p.parse(expr);
+      ContextModel cm = ContextModel();
+      double eval = exp.evaluate(EvaluationType.REAL, cm);
+      return eval.toStringAsFixed(2).replaceAll(RegExp(r'\.00$'), '');
     } catch (e) {
       return 'Error';
     }
-  }
-
-  String _calculateExpression(String expr) {
-    try {
-      final exp = expr.replaceAll('×', '*').replaceAll('÷', '/');
-      return (double.parse(eval(exp).toString())).toString();
-    } catch (e) {
-      return '0';
-    }
-  }
-
-  dynamic eval(String expr) {
-    // This is a dummy parser. Use a proper expression parser in real apps.
-    return double.tryParse(expr) ?? 0;
   }
 
   @override
@@ -81,7 +71,7 @@ class _CalculatorViewState extends State<CalculatorView> {
           padding: const EdgeInsets.all(12),
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              minHeight: screenHeight - kToolbarHeight - 24, // adjust for AppBar
+              minHeight: screenHeight - kToolbarHeight - 24,
             ),
             child: Column(
               children: [

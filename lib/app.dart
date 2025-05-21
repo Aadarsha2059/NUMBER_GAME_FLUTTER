@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:num_game/view/calculator_view_page.dart';
 import 'package:num_game/view/card_view.dart';
 import 'package:num_game/view/container_view.dart';
+import 'package:num_game/view/data_table_view.dart';
 import 'package:num_game/view/flexible_expanded_view.dart';
 import 'package:num_game/view/grid_view_screen.dart';
 import 'package:num_game/view/load_image_view.dart';
