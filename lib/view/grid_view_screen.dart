@@ -15,6 +15,18 @@ class GridViewScreen extends StatelessWidget {
           crossAxisCount: 2,
           children:  [
             for (int i = 0; i < 10; i++)...{
+              Container(
+                alignment:Alignment.center,
+                color: i % 2==0? Colors.blue : Colors.green,
+                child:Text(
+                  'Item $i',
+                  style: const TextStyle(
+                    color:Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold
+                   ),
+                )
+              )
               
             }
            

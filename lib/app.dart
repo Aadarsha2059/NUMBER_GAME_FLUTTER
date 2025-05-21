@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:num_game/view/calculator_view_page.dart';
 import 'package:num_game/view/card_view.dart';
 import 'package:num_game/view/container_view.dart';
 import 'package:num_game/view/flexible_expanded_view.dart';
+import 'package:num_game/view/grid_view_screen.dart';
 import 'package:num_game/view/load_image_view.dart';
 import 'package:num_game/view/login_page_view.dart';
 import 'package:num_game/view/media_query_view.dart';
@@ -16,6 +18,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(debugShowCheckedModeBanner: false,
-     home: GridViewPage());
+     home: CalculatorView());
   }
 }
