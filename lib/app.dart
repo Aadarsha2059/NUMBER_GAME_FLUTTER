@@ -9,6 +9,7 @@ import 'package:num_game/view/load_image_view.dart';
 import 'package:num_game/view/login_page_view.dart';
 import 'package:num_game/view/media_query_view.dart';
 import 'package:num_game/view/num_game.dart';
+import 'package:num_game/view/output_screen_view.dart';
 import 'package:num_game/view/rows_columns_view.dart';
 import 'package:num_game/view/student_view.dart';
 import 'package:num_game/view/grid_view_page.dart';
@@ -19,6 +20,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(debugShowCheckedModeBanner: false,
-     home: CalculatorView());
+     home: DataTableView());
   }
 }
