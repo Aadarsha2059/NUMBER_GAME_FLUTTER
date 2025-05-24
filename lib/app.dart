@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:num_game/view/bottom_screen/dashboard_view.dart';
 import 'package:num_game/view/calculator_view_page.dart';
 import 'package:num_game/view/card_view.dart';
 import 'package:num_game/view/container_view.dart';
@@ -20,6 +21,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(debugShowCheckedModeBanner: false,
-     home: DataTableView());
+     home: DashboardScreen());
   }
 }
