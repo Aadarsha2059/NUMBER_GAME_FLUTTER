@@ -24,7 +24,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Dashboard'), centerTitle: true),
+      appBar: AppBar(
+        title: const Text(
+          'Dashboard',
+          style: TextStyle(fontFamily: 'Opensans Bold',fontSize: 20),
+        ),
+        centerTitle: true,
+      ),
       body: lstBottomScreen[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

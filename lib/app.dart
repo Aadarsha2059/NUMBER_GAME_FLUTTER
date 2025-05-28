@@ -5,6 +5,7 @@ import 'package:num_game/view/card_view.dart';
 import 'package:num_game/view/container_view.dart';
 import 'package:num_game/view/data_table_view.dart';
 import 'package:num_game/view/flexible_expanded_view.dart';
+import 'package:num_game/view/font_view.dart';
 import 'package:num_game/view/grid_view_screen.dart';
 import 'package:num_game/view/load_image_view.dart';
 import 'package:num_game/view/login_page_view.dart';
@@ -14,6 +15,7 @@ import 'package:num_game/view/output_screen_view.dart';
 import 'package:num_game/view/rows_columns_view.dart';
 import 'package:num_game/view/student_view.dart';
 import 'package:num_game/view/grid_view_page.dart';
+import 'package:num_game/view/time_view.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -21,6 +23,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(debugShowCheckedModeBanner: false,
-     home: DashboardScreen());
+     home: TimeView());
   }
 }

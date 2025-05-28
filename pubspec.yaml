@@ -2,7 +2,7 @@ name: num_game
 description: "A new Flutter project."
 
 # Prevents accidental publishing to pub.dev
-publish_to: 'none' 
+publish_to: 'none'
 
 # Version info
 version: 1.0.0+1
@@ -16,6 +16,7 @@ dependencies:
   math_expressions: ^2.2.0
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
+  intl: ^0.18.1  # ✅ For date formatting
 
 dev_dependencies:
   flutter_test:
@@ -28,3 +29,23 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+
+  # fonts:
+  #   - family: OpenSans Regular
+  #     fonts:
+  #       - asset: assets/fonts/OpenSans/OpenSans-Regular.ttf
+  #   - family: OpenSans Bold Italic
+  #     fonts:
+  #       - asset: assets/fonts/OpenSans/OpenSans_Condensed-BoldItalic.ttf
+  #   - family: OpenSans Bold
+  #     fonts:
+  #       - asset: assets/fonts/OpenSans/OpenSans_Condensed-Bold.ttf
+  #   - family: OpenSans Italic
+  #     fonts:
+  #       - asset: assets/fonts/OpenSans/OpenSans-Italic.ttf
+  #   - family: Raleway Bold
+  #     fonts:
+  #       - asset: assets/fonts/Raleway/Raleway-Bold.ttf
+  #   - family: Raleway Semi Bold
+  #     fonts:
+  #       - asset: assets/fonts/Raleway/Raleway-SemiBold.ttf
