@@ -16,13 +16,13 @@ import 'package:num_game/view/rows_columns_view.dart';
 import 'package:num_game/view/student_view.dart';
 import 'package:num_game/view/grid_view_page.dart';
 import 'package:num_game/view/time_view.dart';
-
+import 'package:num_game/view/counter_cubit_view.dart';
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(debugShowCheckedModeBanner: false,
-     home: TimeView());
+     home: CounterCubitView());
   }
 }
